@@ -1,5 +1,7 @@
 package model.intities;
 
+import model.exceptions.DomainException;
+
 public class Account {
 	
 	private Integer number;
@@ -49,14 +51,13 @@ public class Account {
 		return balance += amount;
 	}
 	
-	public String withdrawn(Double amount) {
+	public Double withdrawn(Double amount) throws DomainException {
 		if (amount > withdrawLimit) {
-			return "The amount exceeds withdraw limit";
+			throw new DomainException ("The amount exceeds withdraw limit");
 		} else if (amount > balance) {
-			return "Not enough balance";
+			throw new DomainException ("Not enough balance");
 		} else {
-		balance -= amount;
-		return null;
+		return balance -= amount;
 		}
 	}
 	
