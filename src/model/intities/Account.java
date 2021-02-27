@@ -49,8 +49,15 @@ public class Account {
 		return balance += amount;
 	}
 	
-	public Double withdrawn(Double amount) {
-		return balance -= amount;
+	public String withdrawn(Double amount) {
+		if (amount > withdrawLimit) {
+			return "The amount exceeds withdraw limit";
+		} else if (amount > balance) {
+			return "Not enough balance";
+		} else {
+		balance -= amount;
+		return null;
+		}
 	}
 	
 	@Override
